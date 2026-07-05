@@ -1,5 +1,12 @@
 {
   "name": "Free Pascal",
   "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
-  "postCreateCommand": "apt-get update && apt-get install -y fp-compiler fp-units-base fp-utils"
+  "postCreateCommand": "sudo apt-get update && sudo apt-get install -y fp-compiler",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "coolchyni.beyond-pascal"
+      ]
+    }
+  }
 }

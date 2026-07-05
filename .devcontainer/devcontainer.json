@@ -5,7 +5,7 @@
   "customizations": {
     "vscode": {
       "extensions": [
-        "coolchyni.beyond-pascal"
+        "coolchyni.fpctoolkit"
       ]
     }
   }

@@ -1,0 +1,34 @@
+# Pascal build artifacts
+*.o
+*.ppu
+*.ppu.*
+*.ali
+
+# Executables and outputs
+*.exe
+*.out
+
+# Lazarus / Free Pascal IDE artifacts
+*.compiled
+*.stackdump
+
+# Common editor/IDE files
+.vscode/
+.idea/
+*.iml
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Build folders
+/build/
+/dist/
+/bin/
+
+# Dependency directories
+node_modules/
+vendor/

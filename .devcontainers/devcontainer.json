@@ -1,0 +1,5 @@
+{
+  "name": "Free Pascal",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "postCreateCommand": "apt-get update && apt-get install -y fp-compiler fp-units-base fp-utils"
+}

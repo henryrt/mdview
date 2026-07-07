@@ -3,11 +3,30 @@ uses CRT, DOS;
 const
   MaxLines = 10000;
 
-var
-  Lines: array[1..MaxLines] of string;
-  LineCount: Integer;
+type
+  TStyle = (
+    stNormal,
+    stBold,
+    stCode,
+    stHeading1,
+    stHeading2
+  );
 
+  TRun = record
+    Style : TStyle;
+    Text  : string;
+  end;
+
+  TLine = record
+    RunCount : Integer;
+    Runs     : array[1..20] of TRun;
+  end;
+
+var
+  Lines: array[1..MaxLines] of TLine;
+  LineCount: Integer;
   TopLine : Integer;
+
 
 procedure DrawStatusBar;
 begin
@@ -35,7 +54,7 @@ begin
   for Row := 1 to 24 do
   begin
     GotoXY(1, Row);
-    Write(Copy(Lines[TopLine + Row - 1], 1, 80));
+    Write(Copy(Lines[TopLine + Row - 1].Runs[1].Text, 1, 80));
   end;
   DrawStatusBar;
 end;
@@ -88,8 +107,10 @@ begin
   begin
     ReadLn(F, S);
     Inc(LineCount);
-    Lines[LineCount] := S;
-  end;
+  
+    Lines[LineCount].RunCount := 1;
+    Lines[LineCount].Runs[1].Style := stNormal;
+    Lines[LineCount].Runs[1].Text := S;  end;
 
   Close(F);
 end;

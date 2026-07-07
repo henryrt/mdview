@@ -9,16 +9,35 @@ var
 
   TopLine : Integer;
 
+procedure DrawStatusBar;
+begin
+  TextColor(Black);
+  TextBackground(LightGray);
+
+  GotoXY(1,25);
+  ClrEol;
+
+  Write('Line ', TopLine,
+        ' of ', LineCount,
+        '  Esc=Quit');
+
+  TextColor(LightGray);
+  TextBackground(Black);
+end;
+
 procedure PaintDisplay();
 var 
   Row : Integer;
 begin  
+  TextColor(White);
+  TextBackground(Blue);
   ClrScr;
-  for Row := 1 to 25 do
+  for Row := 1 to 24 do
   begin
     GotoXY(1, Row);
     Write(Copy(Lines[TopLine + Row - 1], 1, 80));
   end;
+  DrawStatusBar;
 end;
 
 procedure HandleInput();
@@ -28,7 +47,13 @@ begin
   Key := ReadKey;
 
   if Ord(Key) = 27 then
-      Halt(0);      { ESC quits }
+  begin
+    TextBackground(Black);
+    TextColor(LightGray);
+    ClrScr;
+    GotoXY(1,1);
+    Halt(0);      { ESC quits }
+  end;
 
   if Key = #0 then
   begin
@@ -39,13 +64,13 @@ begin
     case Ord(Key) of
       72: Dec(TopLine);      { Up }
       80: Inc(TopLine);      { Down }
-      73: Dec(TopLine,24);   { PgUp }
-      81: Inc(TopLine,24);   { PgDn }
+      73: Dec(TopLine,23);   { PgUp }
+      81: Inc(TopLine,23);   { PgDn }
       71: TopLine := 1;      { Home }
-      79: TopLine := LineCount-24; { End }
+      79: TopLine := LineCount-23; { End }
     end;
     if TopLine < 1 then TopLine := 1;
-    if TopLine > LineCount-24 then TopLine := LineCount-24;
+    if TopLine > LineCount-23 then TopLine := LineCount-23;
   end;
 end;
 

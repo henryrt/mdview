@@ -13,7 +13,6 @@
 *.stackdump
 
 # Common editor/IDE files
-.vscode/
 .idea/
 *.iml
 

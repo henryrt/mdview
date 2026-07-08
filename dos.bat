@@ -1,0 +1,1 @@
+..\..\dosbox-x -c "mount c .." -c "c:"
